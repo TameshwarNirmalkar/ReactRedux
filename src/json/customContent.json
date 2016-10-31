@@ -1,0 +1,24 @@
+[
+    {
+      "id": "1",
+      "imageLocation": "/img/image_1.jpg",
+      "imageText" : "A ROAD TO DESTINY IN BETWEEN THE DISPLEASURES"
+    }, 
+    {
+      "id": "2",
+      "imageLocation": "/img/image_2.jpg",
+      "imageText" : "A RIVER TO FIND ITS WAY TO SOURCE"
+    },
+    {
+      "id": "3",
+      "imageLocation": "/img/image_3.jpg",
+      "imageText" : "A RAY OF HOPE IN BETWEEN MISERY"
+    },
+    {
+      "id": "4",
+      "imageLocation": "/img/image_4.jpg",
+      "imageText" : "I HAVE THE WORLD IN MY HAND. FACE ME !"
+    }
+]
+
+
