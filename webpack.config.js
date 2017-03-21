@@ -1,5 +1,3 @@
-// require('babel-polyfill');
-// require('react-hot-loader');
 const fs = require('fs');
 const webpack = require('webpack');
 const path = require('path');
@@ -29,7 +27,7 @@ module.exports = {
         rules: [
             { test: /\.(js|jsx)$/, exclude: [path.resolve(__dirname, '/node_modules/')], loader: 'react-hot-loader!babel-loader' },
             { test: /\.css$/, loader: 'style-loader!css-loader' },
-            { test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/assets/img/[name].[ext]" }
+            { test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/assets/images/[name].[ext]" }
         ]
     },
     plugins: [
