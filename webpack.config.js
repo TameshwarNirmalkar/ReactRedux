@@ -1,55 +1,44 @@
-var webpack = require('webpack');
-var path = require('path');
-var loaders = require('./webpack.loaders');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+// require('babel-polyfill');
+// require('react-hot-loader');
+const fs = require('fs');
+const webpack = require('webpack');
+const path = require('path');
+const loadersassets = require('./webpack.loaders');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, './src/index.html'),
+    filename: 'index.html',
+    inject: 'body'
+});
 
 module.exports = {
-    entry: [
-        './src/index.jsx' // Your appʼs entry point
-    ],
-    devtool: 'source-map',
+    context: path.resolve(__dirname, "src"),
+    entry: {
+        app: path.resolve(__dirname, "src/index.jsx")
+    },
     output: {
-        path: path.join(__dirname, 'public/build/'),
-        filename: 'bundle.js'
+        filename: "[name].bundle.js",
+        path: path.resolve(__dirname, "/build"),
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ["*", ".js", ".jsx", ".json", ".css", ".scss"]
     },
     module: {
-        loaders: loaders
-    },
-    devServer: {
-        contentBase: "./src",
-        noInfo: true, //  --no-info option
-        hot: true,
-        inline: true
+        rules: [
+            { test: /\.(js|jsx)$/, exclude: [path.resolve(__dirname, '/node_modules/')], loader: 'react-hot-loader!babel-loader' },
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
+            { test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/assets/img/[name].[ext]" }
+        ]
     },
     plugins: [
-        new webpack.NoErrorsPlugin(),
+        HtmlWebpackPluginConfig,
 
-        // reloads browser when the watched files change
-        new BrowserSyncPlugin({
-            // use existing Apache virtual host
-            host: 'localhost',
-            port: 8080,
-            proxy: 'localhost',
-            tunnel: true,
-            files: ['public/build/*']
+        new webpack.ProvidePlugin({
+            "React": "react",
+            "$": "jquery",
+            "jQuery": "jquery"
         }),
-
-        // set node env
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        }),
-        // minify
-        /*        new webpack.optimize.UglifyJsPlugin({
-        	      compress:{
-        	        warnings: true
-        	      }
-        	    },
-        	    {
-        	      include: /\.min\.js$/,
-        	      minimize: true
-        	    })*/
     ]
 };
