@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-var Modal = require('react-modal');
+import Modal from 'react-modal';
 
 export default class OpenImage extends Component{
 	constructor(props){
@@ -13,7 +12,7 @@ export default class OpenImage extends Component{
 		return(
 			<span>
 				<a className="expand" onClick = {this.props.handleOpenClick} id = {this.props.id} >Open</a>
-				<Modal isOpen= {this.props.imageModalVisibility[openId]} className = "ModalClass" overlayClassName="OverlayClass" >
+				<Modal isOpen={this.props.imageModalVisibility[openId]} contentLabel="Modal Window" className="ModalClass" overlayClassName="OverlayClass" >
 
 				<div className = 'centerContainer'>
 					<div className = 'mainContainer'>
