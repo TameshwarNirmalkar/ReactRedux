@@ -1,9 +1,10 @@
-// import React, { PropTypes } from 'react';
-
+import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { BrowserRouter as Router, Route, Link, browserHistory, IndexRoute  } from 'react-router-dom';
+
 import CustomContent from './components/CustomContent';
 import rootReducer from './reducers';
 
@@ -14,11 +15,21 @@ const store = createStore(rootReducer, compose(
     // window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
-let attachElement = document.getElementById('customContentApp');
+const attachElement = document.getElementById('customContentApp');
+
+class Home extends Component {
+    render(){
+        return (
+            <Provider store={store}>
+        	    <CustomContent />   
+            </Provider>
+        )
+    }
+}
 
 render(
-		<Provider store={store}>
-        	<CustomContent />
-        </Provider>,
-    	document.getElementById('customContentApp')
+        <Router>
+            <Route path="/" component={Home}/>
+        </Router>,
+    	attachElement
 );
