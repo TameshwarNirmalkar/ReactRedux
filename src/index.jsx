@@ -7,6 +7,8 @@ import thunk from 'redux-thunk';
 import CustomContent from './components/CustomContent';
 import rootReducer from './reducers';
 
+import './assets/css/main.scss';
+
 const store = createStore(rootReducer, compose(
     applyMiddleware(thunk),
     // window.devToolsExtension ? window.devToolsExtension() : f => f

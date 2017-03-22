@@ -1,38 +1,9 @@
-module.exports = [{
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loaders: ['react-hot-loader', 'babel-loader']
-    },
-    {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-    },
-    {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file-loader"
-    },
-    {
-        test: /\.(woff|woff2)$/,
-        loader: "url-loader?prefix=font/&limit=5000"
-    },
-    {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&mimetype=application/octet-stream"
-    },
-    {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&mimetype=image/svg+xml"
-    },
-    {
-        test: /\.gif/,
-        loader: "url-loader?limit=10000&mimetype=image/gif"
-    },
-    {
-        test: /\.jpg/,
-        loader: "url-loader?limit=10000&mimetype=image/jpg"
-    },
-    {
-        test: /\.png/,
-        loader: "url-loader?limit=10000&mimetype=image/png"
-    }
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = [
+    { test: /\.(js|jsx)$/, loader: 'react-hot-loader!babel-loader', exclude: [path.resolve(__dirname, '/node_modules/')] },
+    { test: /\.scss$/, loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!sass-loader' }) },
+    { test: /\.css$/, loader: 'style-loader!css-loader' },
+    { test: /\.(jpe?g|png|gif|svg)$/i, loader: "file-loader?name=/assets/images/[name].[ext]" }
 ];
