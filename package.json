@@ -4,11 +4,11 @@
   "description": "Redux react library",
   "main": "./src/index.jsx",
   "scripts": {
-    "watch": "webpack --watch",
-    "build": "rm -rf build; webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
-    "dev": "webpack-dev-server --progress --colors --inline --watch-poll",
+    "watch": "node ./node_modules/webpack/bin/webpack --watch",
+    "build": "rm -rf build; ./node_modules/webpack/bin/webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
+    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server --progress --colors --inline --watch-poll",
     "prod": "node app.js",
-    "build:prod": "webpack -p --progress"
+    "build:prod": "node ./node_modules/webpack/bin/webpack -p --progress"
   },
   "author": "Tameshwar",
   "license": "ISC",
@@ -36,6 +36,7 @@
     "eslint-loader": "^1.6.3",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-react": "^6.10.3",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.1.0",
